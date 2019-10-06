@@ -1,9 +1,6 @@
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.io.*;
 
@@ -17,7 +14,7 @@ public class Main {
             String entry = "";
             while ((entry = reader.readLine()) != null) {
                 LogEntry logEntry = mapper.readValue(entry, LogEntry.class);
-                System.out.println(logEntry.getTs());
+                System.out.println(logEntry.getTimestamp());
             }
 
         } catch (Exception e) {
@@ -58,7 +55,7 @@ public class Main {
             parser.nextToken();
 
             if (fieldName.equals("ts")) {
-                entry.setTs(parser.getLongValue());
+                entry.setTimestamp(parser.getLongValue());
             }
         }
         parser.close();

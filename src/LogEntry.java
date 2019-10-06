@@ -1,61 +1,72 @@
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class LogEntry {
 
-    private Long ts;
+    @JsonProperty("ts")
+    private Long timestamp;
 
-    private Long pt;
+    @JsonProperty("pt")
+    private Long processingTime;
 
-    private String si;
+    @JsonProperty("si")
+    private String sessionId;
 
-    private String uu;
+    @JsonProperty("uu")
+    private String userUuid;
 
-    private String bg;
+    @JsonProperty("bg")
+    private String businessUuid;
 
+    @JsonProperty("sha")
     private String sha;
 
-    private String nm;
+    @JsonProperty("nm")
+    private String fileName;
 
-    private String ph;
+    @JsonProperty("ph")
+    private String filePath;
 
-    private String dp;
+    @JsonProperty("dp")
+    private String disposition;
 
-    public Long getTs() {
-        return ts;
+    public Long getTimestamp() {
+        return timestamp;
     }
 
-    public void setTs(Long ts) {
-        this.ts = ts;
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
-    public Long getPt() {
-        return pt;
+    public Long getProcessingTime() {
+        return processingTime;
     }
 
-    public void setPt(Long pt) {
-        this.pt = pt;
+    public void setProcessingTime(Long processingTime) {
+        this.processingTime = processingTime;
     }
 
-    public String getSi() {
-        return si;
+    public String getSessionId() {
+        return sessionId;
     }
 
-    public void setSi(String si) {
-        this.si = si;
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
     }
 
-    public String getUu() {
-        return uu;
+    public String getUserUuid() {
+        return userUuid;
     }
 
-    public void setUu(String uu) {
-        this.uu = uu;
+    public void setUserUuid(String userUuid) {
+        this.userUuid = userUuid;
     }
 
-    public String getBg() {
-        return bg;
+    public String getBusinessUuid() {
+        return businessUuid;
     }
 
-    public void setBg(String bg) {
-        this.bg = bg;
+    public void setBusinessUuid(String businessUuid) {
+        this.businessUuid = businessUuid;
     }
 
     public String getSha() {
@@ -66,27 +77,27 @@ public class LogEntry {
         this.sha = sha;
     }
 
-    public String getNm() {
-        return nm;
+    public String getFileName() {
+        return fileName;
     }
 
-    public void setNm(String nm) {
-        this.nm = nm;
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
-    public String getPh() {
-        return ph;
+    public String getFilePath() {
+        return filePath;
     }
 
-    public void setPh(String ph) {
-        this.ph = ph;
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
-    public String getDp() {
-        return dp;
+    public String getDisposition() {
+        return disposition;
     }
 
-    public void setDp(String dp) {
-        this.dp = dp;
+    public void setDisposition(String disposition) {
+        this.disposition = disposition;
     }
 }
