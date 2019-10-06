@@ -14,7 +14,8 @@ public class Main {
             String entry = "";
             while ((entry = reader.readLine()) != null) {
                 LogEntry logEntry = mapper.readValue(entry, LogEntry.class);
-                System.out.println(logEntry.getTimestamp());
+                System.out.println(logEntry.getDisposition());
+
             }
 
         } catch (Exception e) {

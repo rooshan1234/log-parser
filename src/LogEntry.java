@@ -1,5 +1,11 @@
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import converters.DispositionConverter;
+import validation.Disposition;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class LogEntry {
 
     @JsonProperty("ts")
@@ -27,7 +33,8 @@ public class LogEntry {
     private String filePath;
 
     @JsonProperty("dp")
-    private String disposition;
+    @JsonDeserialize(converter = DispositionConverter.class)
+    private Disposition disposition;
 
     public Long getTimestamp() {
         return timestamp;
@@ -93,11 +100,11 @@ public class LogEntry {
         this.filePath = filePath;
     }
 
-    public String getDisposition() {
+    public Disposition getDisposition() {
         return disposition;
     }
 
-    public void setDisposition(String disposition) {
+    public void setDisposition(Disposition disposition) {
         this.disposition = disposition;
     }
 }
