@@ -1,11 +1,9 @@
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import converters.DispositionConverter;
+import converters.FilenameConverter;
 import validation.Disposition;
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class LogEntry {
 
     @JsonProperty("ts")
@@ -27,7 +25,8 @@ public class LogEntry {
     private String sha;
 
     @JsonProperty("nm")
-    private String fileName;
+    @JsonDeserialize(converter = FilenameConverter.class)
+    private String filename;
 
     @JsonProperty("ph")
     private String filePath;
@@ -35,6 +34,10 @@ public class LogEntry {
     @JsonProperty("dp")
     @JsonDeserialize(converter = DispositionConverter.class)
     private Disposition disposition;
+
+    public boolean isValid() {
+        return disposition != null && filename != null;
+    }
 
     public Long getTimestamp() {
         return timestamp;
@@ -84,12 +87,12 @@ public class LogEntry {
         this.sha = sha;
     }
 
-    public String getFileName() {
-        return fileName;
+    public String getFilename() {
+        return filename;
     }
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
 
     public String getFilePath() {

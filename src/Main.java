@@ -1,26 +1,44 @@
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
     public static void main(String[] args) {
 
         ObjectMapper mapper = new ObjectMapper();
+        HashMap<String, Integer> extensions = new HashMap<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(new File("log.json")))) {
+
             String entry = "";
             while ((entry = reader.readLine()) != null) {
                 LogEntry logEntry = mapper.readValue(entry, LogEntry.class);
-                System.out.println(logEntry.getDisposition());
+                if (logEntry.isValid()) {
 
+                    int count = +extensions.getOrDefault(logEntry.getFilename(), 1);
+                    extensions.put(logEntry.getFilename(), count);
+                }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        int mapfiles = 0;
+
+        for (Map.Entry<String, Integer> e : extensions.entrySet()) {
+            System.out.println(e.getKey() + ": " + e.getValue());
+            if (e.getKey().lastIndexOf(".") > 0) {
+                String fileExtension = e.getKey().substring(e.getKey().lastIndexOf("."));
+                if (fileExtension.equals(".map")) {
+                    mapfiles++;
+                }
+            }
+        }
+
+        System.out.println(mapfiles);
 
 //
 //        try {
@@ -41,25 +59,5 @@ public class Main {
 //        } catch (Exception ex) {
 //            throw new RuntimeException(ex);
 //        }
-    }
-
-
-    protected LogEntry read(JsonParser parser) throws IOException {
-        LogEntry entry = new LogEntry();
-
-        if (parser.nextToken() != JsonToken.START_OBJECT) {
-            throw new RuntimeException("Invalid JSON object.");
-        }
-
-        while (parser.nextToken() != JsonToken.END_OBJECT) {
-            String fieldName = parser.getCurrentName();
-            parser.nextToken();
-
-            if (fieldName.equals("ts")) {
-                entry.setTimestamp(parser.getLongValue());
-            }
-        }
-        parser.close();
-        return entry;
     }
 }
