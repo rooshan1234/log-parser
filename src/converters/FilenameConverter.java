@@ -1,7 +1,7 @@
 package converters;
 
 import com.fasterxml.jackson.databind.util.StdConverter;
-import utils.StringUtils;
+import utils.FilenameUtils;
 
 public class FilenameConverter extends StdConverter<String, String> {
 
@@ -13,6 +13,6 @@ public class FilenameConverter extends StdConverter<String, String> {
      */
     @Override
     public String convert(String value) {
-        return StringUtils.fileNameExtensionExtractor(value).isPresent() ? value : null;
+        return FilenameUtils.extractFilenameExtension(value).isPresent() ? value : null;
     }
 }

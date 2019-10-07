@@ -1,63 +1,44 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
+import utils.FilenameUtils;
 
 import java.io.*;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Optional;
 
 public class Main {
 
     public static void main(String[] args) {
 
         ObjectMapper mapper = new ObjectMapper();
-        HashMap<String, Integer> extensions = new HashMap<>();
+        HashMap<String, HashSet<LogEntry>> extensions = new HashMap<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(new File("log.json")))) {
 
             String entry = "";
             while ((entry = reader.readLine()) != null) {
+                // deserialize
                 LogEntry logEntry = mapper.readValue(entry, LogEntry.class);
                 if (logEntry.isValid()) {
+                    // extract the filename extension
+                    Optional<String> fileNameExtension = FilenameUtils.extractFilenameExtension(logEntry.getFilename());
 
-                    int count = +extensions.getOrDefault(logEntry.getFilename(), 1);
-                    extensions.put(logEntry.getFilename(), count);
+                    // check if the filename is present
+                    if (fileNameExtension.isPresent()) {
+                        HashSet<LogEntry> files = extensions.getOrDefault(fileNameExtension.get(), new HashSet<>());
+
+                        files.add(logEntry);
+                        extensions.put(fileNameExtension.get(), files);
+                    }
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        int mapfiles = 0;
-
-        for (Map.Entry<String, Integer> e : extensions.entrySet()) {
-            System.out.println(e.getKey() + ": " + e.getValue());
-            if (e.getKey().lastIndexOf(".") > 0) {
-                String fileExtension = e.getKey().substring(e.getKey().lastIndexOf("."));
-                if (fileExtension.equals(".map")) {
-                    mapfiles++;
-                }
-            }
+        for (Map.Entry<String, HashSet<LogEntry>> entry : extensions.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue().size());
         }
-
-        System.out.println(mapfiles);
-
-//
-//        try {
-//            LogEntry[] entry = mapper.readValue(new File("log.json"), LogEntry[].class);
-//            System.out.println(entry[0].getTs());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-//        JsonFactory factory = new JsonFactory();
-//
-//        try {
-//            JsonParser parser = factory.createParser(new File(("log.json")));
-//            LogEntry entry = read(parser);
-//
-//            System.out.println(entry.getTs());
-//
-//        } catch (Exception ex) {
-//            throw new RuntimeException(ex);
-//        }
     }
 }

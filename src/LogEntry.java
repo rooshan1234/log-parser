@@ -4,6 +4,8 @@ import converters.DispositionConverter;
 import converters.FilenameConverter;
 import validation.Disposition;
 
+import java.util.Objects;
+
 public class LogEntry {
 
     @JsonProperty("ts")
@@ -35,6 +37,13 @@ public class LogEntry {
     @JsonDeserialize(converter = DispositionConverter.class)
     private Disposition disposition;
 
+    /**
+     * Responsible for ensuring that when the customer converters cannot deserialize the data,
+     * it is ignored. In other words, when the converters throw a null we no longer want to
+     * consider that a valid log entry.
+     *
+     * @return true if is converters were successful in deserialization, false if they failed.
+     */
     public boolean isValid() {
         return disposition != null && filename != null;
     }
@@ -109,5 +118,19 @@ public class LogEntry {
 
     public void setDisposition(Disposition disposition) {
         this.disposition = disposition;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LogEntry logEntry = (LogEntry) o;
+        return Objects.equals(getSha(), logEntry.getSha()) &&
+                Objects.equals(getFilename(), logEntry.getFilename());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSha(), getFilename());
     }
 }
