@@ -34,19 +34,8 @@ public class LogEntry {
     private String filePath;
 
     @JsonProperty("dp")
-    @JsonDeserialize(converter = DispositionConverter.class)
+    @JsonDeserialize(using = DispositionConverter.class)
     private Disposition disposition;
-
-    /**
-     * Responsible for ensuring that when the customer converters cannot deserialize the data,
-     * it is ignored. In other words, when the converters throw a null we no longer want to
-     * consider that a valid log entry.
-     *
-     * @return true if all converters were successful in deserialization, false if they failed.
-     */
-    public boolean isValid() {
-        return disposition != null && filename != null;
-    }
 
     public Long getTimestamp() {
         return timestamp;

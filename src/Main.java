@@ -28,19 +28,16 @@ public class Main {
                         // deserialize input line into LogEntry from file
                         LogEntry logEntry = mapper.readValue(entry, LogEntry.class);
 
-                        if (logEntry.isValid()) {
-                            // extract the filename extension
-                            Optional<String> fileNameExtension = FilenameUtils.extractFilenameExtension(logEntry.getFilename());
+                        // extract the filename extension
+                        Optional<String> fileNameExtension = FilenameUtils.extractFilenameExtension(logEntry.getFilename());
 
-                            // check if the filename is present
-                            if (fileNameExtension.isPresent()) {
-                                HashSet<LogEntry> files = extensions.getOrDefault(fileNameExtension.get(), new HashSet<>());
+                        // check if the filename is present
+                        if (fileNameExtension.isPresent()) {
+                            HashSet<LogEntry> files = extensions.getOrDefault(fileNameExtension.get(), new HashSet<>());
 
-                                files.add(logEntry);
-                                extensions.put(fileNameExtension.get(), files);
-                            }
+                            files.add(logEntry);
+                            extensions.put(fileNameExtension.get(), files);
                         }
-
                     } catch (JsonMappingException | JsonParseException px) {
                         // raised from readValue
                         // if a single line has parsing exception, we will continue to parse the rest of the file

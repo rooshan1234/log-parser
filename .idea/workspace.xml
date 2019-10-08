@@ -4,8 +4,12 @@
     <list default="true" id="9655fd8f-d2cc-490d-9519-bfae16fb603d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log.json" beforeDir="false" afterPath="$PROJECT_DIR$/log.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/logparser/LogEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/LogEntry.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/logparser/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/logparser/converters/DispositionConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/converters/DispositionConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LogEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LogEntry.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/converters/DispositionConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/converters/DispositionConverter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,18 +98,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>60</line>
+          <line>57</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>32</line>
+          <line>31</line>
           <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
