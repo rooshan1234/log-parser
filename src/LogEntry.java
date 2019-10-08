@@ -42,7 +42,7 @@ public class LogEntry {
      * it is ignored. In other words, when the converters throw a null we no longer want to
      * consider that a valid log entry.
      *
-     * @return true if is converters were successful in deserialization, false if they failed.
+     * @return true if all converters were successful in deserialization, false if they failed.
      */
     public boolean isValid() {
         return disposition != null && filename != null;

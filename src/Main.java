@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import utils.FilenameUtils;
 
@@ -6,8 +7,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
+
+    public static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
 
@@ -19,22 +24,30 @@ public class Main {
             String entry = "";
             while ((entry = reader.readLine()) != null) {
                 // deserialize
-                LogEntry logEntry = mapper.readValue(entry, LogEntry.class);
-                if (logEntry.isValid()) {
-                    // extract the filename extension
-                    Optional<String> fileNameExtension = FilenameUtils.extractFilenameExtension(logEntry.getFilename());
+                try {
+                    LogEntry logEntry = mapper.readValue(entry, LogEntry.class);
 
-                    // check if the filename is present
-                    if (fileNameExtension.isPresent()) {
-                        HashSet<LogEntry> files = extensions.getOrDefault(fileNameExtension.get(), new HashSet<>());
+                    if (logEntry.isValid()) {
+                        // extract the filename extension
+                        Optional<String> fileNameExtension = FilenameUtils.extractFilenameExtension(logEntry.getFilename());
 
-                        files.add(logEntry);
-                        extensions.put(fileNameExtension.get(), files);
+                        // check if the filename is present
+                        if (fileNameExtension.isPresent()) {
+                            HashSet<LogEntry> files = extensions.getOrDefault(fileNameExtension.get(), new HashSet<>());
+
+                            files.add(logEntry);
+                            extensions.put(fileNameExtension.get(), files);
+                        }
                     }
+
+                } catch (JsonParseException px) {
+                    // if a single line has parsing exception, we will continue to parse the rest of the file
+                    LOGGER.log(Level.WARNING, "Was unable to parse line: " + px.getMessage());
                 }
+
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException io) {
+            io.printStackTrace();
         }
 
         for (Map.Entry<String, HashSet<LogEntry>> entry : extensions.entrySet()) {
