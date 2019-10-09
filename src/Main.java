@@ -1,5 +1,7 @@
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entry.LogEntry;
+import factories.ObjectMapperFactory;
 import processor.LogEntryParser;
 import processor.LogEntryReader;
 
@@ -15,7 +17,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = ObjectMapperFactory.create();
         LogEntryParser parser = new LogEntryParser(mapper);
 
         // used to hold all parsed data

@@ -1,5 +1,7 @@
 package entry;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import converters.DispositionConverter;
@@ -11,50 +13,58 @@ import java.util.Objects;
 
 public class LogEntry {
 
-    @JsonProperty("ts")
-    private Long timestamp;
+    private long timestamp;
 
-    @JsonProperty("pt")
-    private Long processingTime;
+    private long processingTime;
 
-    @JsonProperty("si")
     private String sessionId;
 
-    @JsonProperty("uu")
-    @JsonDeserialize(using = UuidConverter.class)
     private String userUuid;
 
-    @JsonProperty("bg")
-    @JsonDeserialize(using = UuidConverter.class)
     private String businessUuid;
 
-    @JsonProperty("sha")
     private String sha;
 
-    @JsonProperty("nm")
-    @JsonDeserialize(using = FilenameConverter.class)
     private String filename;
 
-    @JsonProperty("ph")
     private String filePath;
 
-    @JsonProperty("dp")
-    @JsonDeserialize(using = DispositionConverter.class)
     private Disposition disposition;
 
-    public Long getTimestamp() {
+    @JsonCreator
+    public LogEntry(@JsonProperty(value = "ts", required = true) @JsonFormat(shape = JsonFormat.Shape.NUMBER) long timestamp,
+                    @JsonProperty(value = "pt", required = true) @JsonFormat(shape = JsonFormat.Shape.NUMBER) long processingTime,
+                    @JsonProperty(value = "si", required = true) @JsonFormat(shape = JsonFormat.Shape.STRING) String sessionId,
+                    @JsonProperty(value = "ph", required = true) @JsonFormat(shape = JsonFormat.Shape.STRING) String filePath,
+                    @JsonProperty(value = "sha", required = true) @JsonFormat(shape = JsonFormat.Shape.STRING) String sha,
+                    @JsonProperty(value = "uu", required = true) @JsonDeserialize(using = UuidConverter.class) @JsonFormat(shape = JsonFormat.Shape.STRING) String userUuid,
+                    @JsonProperty(value = "bg", required = true) @JsonDeserialize(using = UuidConverter.class) @JsonFormat(shape = JsonFormat.Shape.STRING) String businessUuid,
+                    @JsonProperty(value = "nm", required = true) @JsonDeserialize(using = FilenameConverter.class) @JsonFormat(shape = JsonFormat.Shape.STRING) String filename,
+                    @JsonProperty(value = "dp", required = true) @JsonDeserialize(using = DispositionConverter.class) Disposition disposition) {
+        this.timestamp = timestamp;
+        this.processingTime = processingTime;
+        this.sessionId = sessionId;
+        this.userUuid = userUuid;
+        this.businessUuid = businessUuid;
+        this.sha = sha;
+        this.filename = filename;
+        this.filePath = filePath;
+        this.disposition = disposition;
+    }
+
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Long timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 
-    public Long getProcessingTime() {
+    public long getProcessingTime() {
         return processingTime;
     }
 
-    public void setProcessingTime(Long processingTime) {
+    public void setProcessingTime(long processingTime) {
         this.processingTime = processingTime;
     }
 
