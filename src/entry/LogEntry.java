@@ -1,3 +1,5 @@
+package entry;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import converters.DispositionConverter;

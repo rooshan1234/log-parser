@@ -1,6 +1,7 @@
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import entry.LogEntry;
 import utils.FilenameUtils;
 
 import java.io.*;
@@ -24,24 +25,18 @@ public class Main {
             String entry = "";
             try {
                 while ((entry = reader.readLine()) != null) {
-                    try {
-                        // deserialize input line into LogEntry from file
-                        LogEntry logEntry = mapper.readValue(entry, LogEntry.class);
+                    // deserialize input line into LogEntry from file
+                    LogEntry logEntry = mapper.readValue(entry, LogEntry.class);
 
-                        // extract the filename extension
-                        Optional<String> fileNameExtension = FilenameUtils.extractFilenameExtension(logEntry.getFilename());
+                    // extract the filename extension
+                    Optional<String> fileNameExtension = FilenameUtils.extractFilenameExtension(logEntry.getFilename());
 
-                        // check if the filename is present
-                        if (fileNameExtension.isPresent()) {
-                            HashSet<LogEntry> files = extensions.getOrDefault(fileNameExtension.get(), new HashSet<>());
+                    // check if the filename is present
+                    if (fileNameExtension.isPresent()) {
+                        HashSet<LogEntry> files = extensions.getOrDefault(fileNameExtension.get(), new HashSet<>());
 
-                            files.add(logEntry);
-                            extensions.put(fileNameExtension.get(), files);
-                        }
-                    } catch (JsonMappingException | JsonParseException px) {
-                        // raised from readValue
-                        // if a single line has parsing exception, we will continue to parse the rest of the file
-                        LOGGER.log(Level.WARNING, "Was unable to parse line: " + px.getMessage());
+                        files.add(logEntry);
+                        extensions.put(fileNameExtension.get(), files);
                     }
                 }
             } catch (IOException ex) {
@@ -50,7 +45,7 @@ public class Main {
                 LOGGER.log(Level.WARNING, "Was unable to read line from buffer: " + ex.getMessage());
             }
         } catch (IOException io) {
-            // raised from BufferedReader, FileReader or File
+            // raised from BufferedReader, FileReader or new File()
             // we cannot continue if we cannot initialize the buffer or the file is not found
             throw new RuntimeException(io);
         }
