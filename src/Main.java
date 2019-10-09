@@ -18,10 +18,14 @@ public class Main {
         ObjectMapper mapper = new ObjectMapper();
         LogEntryParser parser = new LogEntryParser(mapper);
 
+        // used to hold all parsed data
         HashMap<String, HashSet<LogEntry>> data;
 
         try (BufferedReader reader = new BufferedReader(new FileReader(new File("log.json")))) {
+            // create a new reader with logging disabled
             LogEntryReader logEntryReader = new LogEntryReader(reader, parser);
+
+            // read the data into a map for printing
             data = logEntryReader.read();
         } catch (IOException io) {
             // raised from BufferedReader, FileReader or new File()
@@ -30,6 +34,7 @@ public class Main {
         }
 
         for (Map.Entry<String, HashSet<LogEntry>> entry : data.entrySet()) {
+            // print out the unique file count per extension
             System.out.println(entry.getKey() + ": " + entry.getValue().size());
         }
     }

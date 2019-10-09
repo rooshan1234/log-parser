@@ -18,10 +18,16 @@ public class LogEntryReader {
     private BufferedReader reader;
     private LogEntryParser parser;
     private HashMap<String, HashSet<LogEntry>> data = new HashMap<>();
+    private boolean loggingEnabled;
 
     public LogEntryReader(BufferedReader reader, LogEntryParser parser) {
+        this(reader, parser, false);
+    }
+
+    public LogEntryReader(BufferedReader reader, LogEntryParser parser, boolean loggingEnabled) {
         this.reader = reader;
         this.parser = parser;
+        this.loggingEnabled = loggingEnabled;
     }
 
     public HashMap<String, HashSet<LogEntry>> read() {
@@ -41,6 +47,8 @@ public class LogEntryReader {
 
                     // files is a HashSet, which means it will use the equals and hashcode methods to create a unique
                     // list of files
+                    // we add the new file from the current LogEntry into the HashSet for that particular extension
+                    // e.g. adding file 'xyz.pdf' into data HashMap {'.pdf', [abc.pdf]} -> {'.pdf', [abc.pdf, xyz.pdf]}
                     files.add(logEntry);
 
                     // finally update the HashMap with the new list of unique files for the current processing LogEntry
