@@ -25,8 +25,9 @@ public class FilenameConverter extends StdDeserializer<String> {
     @Override
     public String deserialize(JsonParser p, DeserializationContext ctxt) throws IOException, JsonProcessingException {
         String filename = p.getValueAsString();
-        return FilenameUtils.extractFilenameExtension(filename)
+        FilenameUtils.extractFilenameExtension(filename)
                 .orElseThrow(() ->
                         new JsonParseException(p, "Was unable to parse Filename field with value: " + filename));
+        return filename;
     }
 }

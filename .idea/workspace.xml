@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9655fd8f-d2cc-490d-9519-bfae16fb603d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/processor/LogEntryParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/processor/LogEntryReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LogEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entry/LogEntry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/logparser/LogEntry.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/logparser/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/logparser/converters/FilenameConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/converters/FilenameConverter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/converters/FilenameConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/converters/FilenameConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/processor/LogEntryReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/processor/LogEntryReader.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -105,8 +107,28 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>52</line>
+          <line>31</line>
           <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/utils/FilenameUtils.java</url>
+          <line>15</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/utils/FilenameUtils.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
