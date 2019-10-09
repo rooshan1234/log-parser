@@ -35,30 +35,34 @@ public class LogEntryReader {
             String line = "";
             while ((line = reader.readLine()) != null) {
                 // deserialize input line into LogEntry from file
-                LogEntry logEntry = parser.parse(line);
+                Optional<LogEntry> logEntry = parser.parse(line);
 
-                // extract the filename extension
-                Optional<String> fileNameExtension = FilenameUtils.extractFilenameExtension(logEntry.getFilename());
+                if (logEntry.isPresent()) {
+                    // extract the filename extension
+                    Optional<String> fileNameExtension = FilenameUtils.extractFilenameExtension(logEntry.get().getFilename());
 
-                // check if the filename is present
-                if (fileNameExtension.isPresent()) {
-                    // we build a HashMap of the extension (e.g. '.pdf') to the unique list of files for that extension
-                    HashSet<LogEntry> files = data.getOrDefault(fileNameExtension.get(), new HashSet<>());
+                    // check if the filename is present
+                    if (fileNameExtension.isPresent()) {
+                        // we build a HashMap of the extension (e.g. '.pdf') to the unique list of files for that extension
+                        HashSet<LogEntry> files = data.getOrDefault(fileNameExtension.get(), new HashSet<>());
 
-                    // files is a HashSet, which means it will use the equals and hashcode methods to create a unique
-                    // list of files
-                    // we add the new file from the current LogEntry into the HashSet for that particular extension
-                    // e.g. adding file 'xyz.pdf' into data HashMap {'.pdf', [abc.pdf]} -> {'.pdf', [abc.pdf, xyz.pdf]}
-                    files.add(logEntry);
+                        // files is a HashSet, which means it will use the equals and hashcode methods to create a unique
+                        // list of files
+                        // we add the new file from the current LogEntry into the HashSet for that particular extension
+                        // e.g. adding file 'xyz.pdf' into data HashMap {'.pdf', [abc.pdf]} -> {'.pdf', [abc.pdf, xyz.pdf]}
+                        files.add(logEntry.get());
 
-                    // finally update the HashMap with the new list of unique files for the current processing LogEntry
-                    data.put(fileNameExtension.get(), files);
+                        // finally update the HashMap with the new list of unique files for the current processing LogEntry
+                        data.put(fileNameExtension.get(), files);
+                    }
                 }
             }
         } catch (IOException ex) {
             // raised from readLine
             // if a single line cannot be read from the buffer, we will do our best to continue
-            LOGGER.log(Level.WARNING, "Was unable to read line from buffer: " + ex.getMessage());
+            if (loggingEnabled) {
+                LOGGER.log(Level.WARNING, "Was unable to read line from buffer: " + ex.getMessage());
+            }
         }
         return data;
     }

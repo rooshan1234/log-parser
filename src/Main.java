@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) {
 
         ObjectMapper mapper = new ObjectMapper();
-        LogEntryParser parser = new LogEntryParser(mapper);
+        LogEntryParser parser = new LogEntryParser(mapper, false);
 
         // used to hold all parsed data
         HashMap<String, HashSet<LogEntry>> data;
