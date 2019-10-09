@@ -27,7 +27,7 @@ public class LogEntry {
     private String sha;
 
     @JsonProperty("nm")
-    @JsonDeserialize(converter = FilenameConverter.class)
+    @JsonDeserialize(using = FilenameConverter.class)
     private String filename;
 
     @JsonProperty("ph")

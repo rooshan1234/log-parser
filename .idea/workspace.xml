@@ -4,12 +4,9 @@
     <list default="true" id="9655fd8f-d2cc-490d-9519-bfae16fb603d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/log.json" beforeDir="false" afterPath="$PROJECT_DIR$/log.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/logparser/LogEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/LogEntry.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/logparser/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/logparser/converters/DispositionConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/converters/DispositionConverter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LogEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LogEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/converters/DispositionConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/converters/DispositionConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/converters/FilenameConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/converters/FilenameConverter.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,6 +75,16 @@
       <updated>1570333240124</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
