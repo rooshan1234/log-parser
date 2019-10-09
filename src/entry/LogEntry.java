@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import converters.DispositionConverter;
 import converters.FilenameConverter;
+import converters.UuidConverter;
 import validation.Disposition;
 
 import java.util.Objects;
@@ -20,9 +21,11 @@ public class LogEntry {
     private String sessionId;
 
     @JsonProperty("uu")
+    @JsonDeserialize(using = UuidConverter.class)
     private String userUuid;
 
     @JsonProperty("bg")
+    @JsonDeserialize(using = UuidConverter.class)
     private String businessUuid;
 
     @JsonProperty("sha")
