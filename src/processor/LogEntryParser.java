@@ -15,10 +15,20 @@ public class LogEntryParser {
     private ObjectMapper mapper;
     private boolean loggingEnabled;
 
+    /**
+     * Constructor used to build the parser with the ObjectMapper. Logging is disabled by default.
+     *
+     * @param mapper used to bind a single line from the file to a LogEntry.
+     */
     public LogEntryParser(ObjectMapper mapper) {
         this(mapper, false);
     }
 
+    /**
+     * Constructor used for testing purposes, where logging can be enabled.
+     *
+     * @param mapper used to bind a single line from the file to a LogEntry.
+     */
     public LogEntryParser(ObjectMapper mapper, boolean loggingEnabled) {
         this.mapper = mapper;
         this.loggingEnabled = loggingEnabled;

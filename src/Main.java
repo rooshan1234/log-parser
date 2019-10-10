@@ -9,26 +9,26 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.logging.Logger;
 
 public class Main {
 
-    public static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+    private static final String PARSING_FILE = "log.json";
 
     public static void main(String[] args) {
-
         ObjectMapper mapper = ObjectMapperFactory.create();
         LogEntryParser parser = new LogEntryParser(mapper);
 
         // used to hold all parsed data
         HashMap<String, HashSet<LogEntry>> data;
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(new File("log.json")))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(new File(Main.PARSING_FILE)))) {
+
             // create a new reader with logging disabled
             LogEntryReader logEntryReader = new LogEntryReader(reader, parser);
 
             // read the data into a map for printing
             data = logEntryReader.read();
+
         } catch (IOException io) {
             // raised from BufferedReader, FileReader or new File()
             // we cannot continue if we cannot initialize the buffer or the file is not found

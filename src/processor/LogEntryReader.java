@@ -20,10 +20,23 @@ public class LogEntryReader {
     private HashMap<String, HashSet<LogEntry>> data = new HashMap<>();
     private boolean loggingEnabled;
 
+    /**
+     * Constructor used for production purposes, logger is disabled as default.
+     *
+     * @param reader the buffer for which the file is read into.
+     * @param parser used the parse the contents of the file.
+     */
     public LogEntryReader(BufferedReader reader, LogEntryParser parser) {
         this(reader, parser, false);
     }
 
+    /**
+     * Constructor used for testing purposes to enable logging.
+     *
+     * @param reader         the buffer for which the file is read into.
+     * @param parser         used the parse the contents of the file.
+     * @param loggingEnabled to print log messages.
+     */
     public LogEntryReader(BufferedReader reader, LogEntryParser parser, boolean loggingEnabled) {
         this.reader = reader;
         this.parser = parser;
@@ -50,6 +63,7 @@ public class LogEntryReader {
                         // list of files
                         // we add the new file from the current LogEntry into the HashSet for that particular extension
                         // e.g. adding file 'xyz.pdf' into data HashMap {'.pdf', [abc.pdf]} -> {'.pdf', [abc.pdf, xyz.pdf]}
+                        // HashSet will also allow us to have an O(1) look up for when checking for duplicates
                         files.add(logEntry.get());
 
                         // finally update the HashMap with the new list of unique files for the current processing LogEntry

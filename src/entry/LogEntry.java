@@ -124,6 +124,13 @@ public class LogEntry {
         this.disposition = disposition;
     }
 
+    /**
+     * We will use both the SHA and filename as a unique identifier, therefore two files are only equal if and only if
+     * the SHA and the filename is the same.
+     *
+     * @param o other object to compare.
+     * @return true if files match, false if they don't match.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
