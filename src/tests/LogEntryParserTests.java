@@ -39,7 +39,7 @@ public class LogEntryParserTests {
     @Test
     public void invalidJsonStart() throws Exception {
         String line =
-                "\"ts\":1551140352," +
+                "\"ts\": \"3214213\"," +
                         "\"pt\":55," +
                         "\"si\":" + "\"3380fb19-0bdb-46ab-8781-e4c5cd448074\"," +
                         "\"uu\":\"0dd24034-36d6-4b1e-a6c1-a52cc984f105\"," +
@@ -55,7 +55,7 @@ public class LogEntryParserTests {
     @Test
     public void invalidJsonEnd() throws Exception {
         String line =
-                "{\"ts\":1551140352," +
+                "{\"ts\": \"3214213\"," +
                         "\"pt\":55," +
                         "\"si\":" + "\"3380fb19-0bdb-46ab-8781-e4c5cd448074\"," +
                         "\"uu\":\"0dd24034-36d6-4b1e-a6c1-a52cc984f105\"," +
@@ -71,7 +71,7 @@ public class LogEntryParserTests {
     @Test
     public void invalidUuidTest() throws Exception {
         String line =
-                "{\"ts\":1551140352," +
+                "{\"ts\": \"3214213\"," +
                         "\"pt\":55," +
                         "\"si\":" + "\"3380fb19-0bdb-46ab-8781-e4c5cd448074\"," +
                         "\"uu\":\"0dd24034-36d6-4b1e-a6c1-a52cc984f10\"," +
@@ -87,7 +87,7 @@ public class LogEntryParserTests {
     @Test
     public void invalidDisposition() {
         String line =
-                "{\"ts\":1551140352," +
+                "{\"ts\": \"3214213\"," +
                         "\"pt\":55," +
                         "\"si\":" + "\"3380fb19-0bdb-46ab-8781-e4c5cd448074\"," +
                         "\"uu\":\"0dd24034-36d6-4b1e-a6c1-a52cc984f105\"," +
@@ -103,7 +103,7 @@ public class LogEntryParserTests {
     @Test
     public void invalidFilenameExtension() {
         String line =
-                "{\"ts\":1551140352," +
+                "{\"ts\": \"3214213\"," +
                         "\"pt\":55," +
                         "\"si\":" + "\"3380fb19-0bdb-46ab-8781-e4c5cd448074\"," +
                         "\"uu\":\"0dd24034-36d6-4b1e-a6c1-a52cc984f105\"," +
@@ -134,7 +134,6 @@ public class LogEntryParserTests {
 
     @Test
     public void fieldIsBlank() {
-        // test: timestamp is blank
         String line =
                 "{\"ts\":," +
                         "\"pt\":55," +
@@ -151,7 +150,6 @@ public class LogEntryParserTests {
 
     @Test
     public void fieldIsNull() {
-        // test: timestamp is blank
         String line =
                 "{\"ts\":\"null\":," +
                         "\"pt\":55," +
@@ -168,7 +166,6 @@ public class LogEntryParserTests {
 
     @Test
     public void fieldLongHasInvalidType() {
-        // test: timestamp is blank
         String line =
                 "{\"ts\": \"test\"," +
                         "\"pt\":55," +
@@ -182,4 +179,35 @@ public class LogEntryParserTests {
         // ignore line if JSON line has 'ts' string instead of long (primitive)
         Assert.assertFalse(parser.parse(line).isPresent());
     }
+
+    @Test
+    public void lineMissingMultipleRequiredFields() {
+        String line =
+                "{\"ts\": \"3214213\"," +
+                        "\"pt\":55," +
+                        "\"si\":" + "\"3380fb19-0bdb-46ab-8781-e4c5cd448074\"," +
+                        "\"sha\":\"abb3ec1b8174043d5cd21d21fbe3c3fb3e9a11c7ceff3314a3222404feedda52\"," +
+                        "\"nm\":\"phkkrw.txt\"," +
+                        "\"ph\":\"/efvrfutgp/expgh/phkkrw\"," +
+                        "\"dp\":2}";
+        // ignore line if JSON line doesn't have uu, bg, sha
+        Assert.assertFalse(parser.parse(line).isPresent());
+    }
+
+    @Test
+    public void validJsonProvided() {
+        String line =
+                "{\"ts\": \"3214213\"," +
+                        "\"pt\":\"55\"," +
+                        "\"si\":" + "\"3380fb19-0bdb-46ab-8781-e4c5cd448074\"," +
+                        "\"uu\":\"0dd24034-36d6-4b1e-a6c1-a52cc984f105\"," +
+                        "\"bg\":\"77e28e28-745a-474b-a496-3c0e086eaec0\"," +
+                        "\"sha\":\"abb3ec1b8174043d5cd21d21fbe3c3fb3e9a11c7ceff3314a3222404feedda52\"," +
+                        "\"nm\":\"phkkrw.ext\"," +
+                        "\"ph\":\"/efvrfutgp/expgh/phkkrw\"," +
+                        "\"dp\":2}";
+        // valid JSON provided, the line will be parsed successfully
+        Assert.assertTrue(parser.parse(line).isPresent());
+    }
+
 }
