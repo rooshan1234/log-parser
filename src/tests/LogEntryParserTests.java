@@ -109,6 +109,7 @@ public class LogEntryParserTests {
                         "\"uu\":\"0dd24034-36d6-4b1e-a6c1-a52cc984f105\"," +
                         "\"bg\":\"77e28e28-745a-474b-a496-3c0e086eaec0\"," +
                         "\"sha\":\"abb3ec1b8174043d5cd21d21fbe3c3fb3e9a11c7ceff3314a3222404feedda52\"," +
+                        // no extension for filename
                         "\"nm\":\"phkkrw\"," +
                         "\"ph\":\"/efvrfutgp/expgh/phkkrw\"," +
                         "\"dp\":2}";
@@ -209,5 +210,4 @@ public class LogEntryParserTests {
         // valid JSON provided, the line will be parsed successfully
         Assert.assertTrue(parser.parse(line).isPresent());
     }
-
 }

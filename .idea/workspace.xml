@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9655fd8f-d2cc-490d-9519-bfae16fb603d" name="Default Changelist" comment="" />
+    <list default="true" id="9655fd8f-d2cc-490d-9519-bfae16fb603d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/tests/LogEntryReaderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/logparser/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/logparser/converters/UuidConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/converters/UuidConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/logparser/entry/LogEntry.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/entry/LogEntry.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/logparser/processor/LogEntryParser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/processor/LogEntryParser.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/logparser/processor/LogEntryReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/logparser/processor/LogEntryReader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/LogEntryParserTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/LogEntryParserTests.java" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +60,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogEntryParserTests.invalidFilenameExtension" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogEntryParserTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="logparser" />
       <extension name="coverage">
         <pattern>
@@ -61,40 +70,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.LogEntryParserTests" />
-      <option name="METHOD_NAME" value="invalidFilenameExtension" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LogEntryParserTests.invalidJsonEnd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="logparser" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.LogEntryParserTests" />
-      <option name="METHOD_NAME" value="invalidJsonEnd" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LogEntryParserTests.invalidJsonStart" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="logparser" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.LogEntryParserTests" />
-      <option name="METHOD_NAME" value="invalidJsonStart" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -115,13 +91,45 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="LogEntryReaderTest.invalidLine" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="logparser" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.LogEntryReaderTest" />
+      <option name="METHOD_NAME" value="invalidLine" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LogEntryReaderTest.invalidLineFromBuffer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="logparser" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests" />
+      <option name="MAIN_CLASS_NAME" value="tests.LogEntryReaderTest" />
+      <option name="METHOD_NAME" value="invalidLineFromBuffer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.LogEntryParserTests" />
+        <item itemvalue="JUnit.LogEntryReaderTest.invalidLineFromBuffer" />
+        <item itemvalue="JUnit.LogEntryReaderTest.invalidLine" />
         <item itemvalue="JUnit.LogEntryParserTests.validJsonProvided" />
-        <item itemvalue="JUnit.LogEntryParserTests.invalidJsonEnd" />
-        <item itemvalue="JUnit.LogEntryParserTests.invalidFilenameExtension" />
-        <item itemvalue="JUnit.LogEntryParserTests.invalidJsonStart" />
       </list>
     </recent_temporary>
   </component>
@@ -169,7 +177,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>26</line>
+          <line>25</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
