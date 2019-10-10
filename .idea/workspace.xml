@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9655fd8f-d2cc-490d-9519-bfae16fb603d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/validation/Uuid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/validation/Uuid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/LogEntryParserTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/LogEntryParserTests.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -45,24 +46,15 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.LogEntryParserTests.nullLine">
-    <configuration name="LogEntryParserTests.fieldStringHasInvalidType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.LogEntryParserTests">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="logparser" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="tests" />
-      <option name="MAIN_CLASS_NAME" value="tests.LogEntryParserTests" />
-      <option name="METHOD_NAME" value="fieldStringHasInvalidType" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LogEntryParserTests.invalidJsonEnd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LogEntryParserTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="logparser" />
       <extension name="coverage">
         <pattern>
@@ -72,8 +64,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="tests" />
       <option name="MAIN_CLASS_NAME" value="tests.LogEntryParserTests" />
-      <option name="METHOD_NAME" value="invalidJsonEnd" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -128,11 +119,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.LogEntryParserTests.nullLine" />
-        <item itemvalue="JUnit.LogEntryParserTests.invalidLine" />
-        <item itemvalue="JUnit.LogEntryParserTests.invalidJsonEnd" />
+        <item itemvalue="JUnit.LogEntryParserTests" />
         <item itemvalue="JUnit.LogEntryParserTests.invalidJsonStart" />
-        <item itemvalue="JUnit.LogEntryParserTests.fieldStringHasInvalidType" />
+        <item itemvalue="JUnit.LogEntryParserTests.invalidLine" />
+        <item itemvalue="JUnit.LogEntryParserTests.nullLine" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -164,7 +155,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

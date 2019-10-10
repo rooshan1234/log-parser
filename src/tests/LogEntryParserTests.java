@@ -1,6 +1,5 @@
 package tests;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import factories.ObjectMapperFactory;
 import org.junit.Assert;
@@ -8,6 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 import processor.LogEntryParser;
 
+/**
+ * This class will test the parser with various JSON line inputs that the file can contain. This class also has
+ * logging enabled, which means each test will throw a warning telling you why it failed (it is not an exception).
+ */
 public class LogEntryParserTests {
 
     private LogEntryParser parser;
@@ -15,19 +18,22 @@ public class LogEntryParserTests {
     @Before
     public void setUp() throws Exception {
         ObjectMapper mapper = ObjectMapperFactory.create();
+        // we enable logging here, this tells us what the parser thinks should be valid
         parser = new LogEntryParser(mapper, true);
     }
 
-    @Test
+    @Test(expected = Exception.class)
     public void nullLine() throws Exception {
         String line = null;
-        Assert.assertTrue(parser.parse(line).isPresent());
+        // we assert false because we don't want to parse if a null line is provided
+        Assert.assertFalse(parser.parse(line).isPresent());
     }
 
     @Test
     public void invalidLine() throws Exception {
         String line = "\n";
-        Assert.assertTrue(parser.parse(line).isPresent());
+        // ignore line if invalid line is provided
+        Assert.assertFalse(parser.parse(line).isPresent());
     }
 
     @Test
@@ -42,7 +48,8 @@ public class LogEntryParserTests {
                         "\"nm\":\"phkkrw.ext\"," +
                         "\"ph\":\"/efvrfutgp/expgh/phkkrw\"," +
                         "\"dp\":2}";
-        Assert.assertTrue(parser.parse(line).isPresent());
+        // ignore line if JSON line has incorrect begin character
+        Assert.assertFalse(parser.parse(line).isPresent());
     }
 
     @Test
@@ -57,7 +64,8 @@ public class LogEntryParserTests {
                         "\"nm\":\"phkkrw.ext\"," +
                         "\"ph\":\"/efvrfutgp/expgh/phkkrw\"," +
                         "\"dp\":2";
-        Assert.assertTrue(parser.parse(line).isPresent());
+        // ignore line if JSON line has incorrect end character
+        Assert.assertFalse(parser.parse(line).isPresent());
     }
 
     @Test
@@ -72,7 +80,8 @@ public class LogEntryParserTests {
                         "\"nm\":\"phkkrw.ext\"," +
                         "\"ph\":\"/efvrfutgp/expgh/phkkrw\"," +
                         "\"dp\":2}";
-        Assert.assertTrue(parser.parse(line).isPresent());
+        // ignore line if JSON line has incorrect UUID
+        Assert.assertFalse(parser.parse(line).isPresent());
     }
 
     @Test
@@ -87,7 +96,8 @@ public class LogEntryParserTests {
                         "\"nm\":\"phkkrw.ext\"," +
                         "\"ph\":\"/efvrfutgp/expgh/phkkrw\"," +
                         "\"dp\":10}";
-        Assert.assertTrue(parser.parse(line).isPresent());
+        // ignore line if JSON line has incorrect disposition
+        Assert.assertFalse(parser.parse(line).isPresent());
     }
 
     @Test
@@ -102,7 +112,8 @@ public class LogEntryParserTests {
                         "\"nm\":\"phkkrw\"," +
                         "\"ph\":\"/efvrfutgp/expgh/phkkrw\"," +
                         "\"dp\":2}";
-        Assert.assertTrue(parser.parse(line).isPresent());
+        // ignore line if JSON line has no filename extension
+        Assert.assertFalse(parser.parse(line).isPresent());
     }
 
     @Test
@@ -117,7 +128,8 @@ public class LogEntryParserTests {
                         "\"nm\":\"phkkrw.txt\"," +
                         "\"ph\":\"/efvrfutgp/expgh/phkkrw\"," +
                         "\"dp\":2}";
-        Assert.assertTrue(parser.parse(line).isPresent());
+        // ignore line if JSON line has no 'ts' field
+        Assert.assertFalse(parser.parse(line).isPresent());
     }
 
     @Test
@@ -133,7 +145,8 @@ public class LogEntryParserTests {
                         "\"nm\":\"phkkrw\"," +
                         "\"ph\":\"/efvrfutgp/expgh/phkkrw\"," +
                         "\"dp\":2}";
-        Assert.assertTrue(parser.parse(line).isPresent());
+        // ignore line if JSON line has no 'ts' value provided
+        Assert.assertFalse(parser.parse(line).isPresent());
     }
 
     @Test
@@ -149,7 +162,8 @@ public class LogEntryParserTests {
                         "\"nm\":\"phkkrw\"," +
                         "\"ph\":\"/efvrfutgp/expgh/phkkrw\"," +
                         "\"dp\":2}";
-        Assert.assertTrue(parser.parse(line).isPresent());
+        // ignore line if JSON line has 'ts' null value
+        Assert.assertFalse(parser.parse(line).isPresent());
     }
 
     @Test
@@ -165,7 +179,7 @@ public class LogEntryParserTests {
                         "\"nm\":\"phkkrw\"," +
                         "\"ph\":\"/efvrfutgp/expgh/phkkrw\"," +
                         "\"dp\":2}";
-        Assert.assertTrue(parser.parse(line).isPresent());
+        // ignore line if JSON line has 'ts' string instead of long (primitive)
+        Assert.assertFalse(parser.parse(line).isPresent());
     }
-
 }
