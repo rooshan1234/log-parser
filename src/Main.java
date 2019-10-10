@@ -1,4 +1,3 @@
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import entry.LogEntry;
 import factories.ObjectMapperFactory;
